@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Posts</title>
+    <link rel="stylesheet" href="/style.css";
+  </head>
+  <body>
+    <h1>"Ｑ𝓾◎𝓉𝑒𝐵𝓸𝓸𝓴"</h1>
+    <div class="container">
+      <% for(post of posts) { %>
+      <div class="card">
+        <h2>@<%=post.username%></h2>
+        <hr />
+        <span>"<%=post.message%>"</span>
+      </div>
+      <% }%>
+    </div>
+  </body>
+</html>
