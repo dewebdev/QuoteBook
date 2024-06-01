@@ -3,26 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quote List</title>
+    <title>Quote Detail</title>
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
     <div class="header">
-      <h1>"QuoteBook"</h1>
-      <a href="/posts/new">Write a Quote</a>
+      <h1>Quote Detail</h1>
+      <a href="/posts">Back to Quotes</a>
     </div>
 
     <div class="container">
-      <% for(let p of posts) { %>
       <div class="card">
-        <h2>@<%= p.username %></h2>
+        <h2>@<%= post.username %></h2>
         <hr />
-        <span>"<%= p.message %>"</span>
-        <div class="quote__and__id">
-          <a href="/posts/<%= p.id %>">View Quote in Detail</a>
-        </div>
+        <span>"<%= post.message %>"</span>
       </div>
-      <% } %>
     </div>
   </body>
 </html>
