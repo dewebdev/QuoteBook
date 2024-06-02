@@ -3,12 +3,14 @@ const app = express();
 const PORT = 9000;
 const path = require("path");
 const { v4: uuidv4 } = require("uuid");
+const methodOverride = require("method-override");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(methodOverride("_method"));
 
 let posts = [
   {
@@ -53,6 +55,28 @@ app.post("/posts/search", (req, res) => {
   let { username } = req.body;
   let post = posts.find((p) => p.username === username);
   res.render("show", { post });
+});
+
+app.get("/posts/:id/edit", (req, res) => {
+  let { id } = req.params;
+  let post = posts.find((p) => p.id === id);
+  res.render("edit.ejs", { post });
+});
+
+app.patch("/posts/:id", (req, res) => {
+  let { id } = req.params;
+  let content = req.body.content;
+  let post = posts.find((p) => p.id === id);
+  post.message = content;
+  console.log(post.message);
+  console.log("Patached");
+  res.redirect("/posts");
+});
+
+app.delete("/posts/:id", (req, res) => {
+  let { id } = req.params;
+  posts = posts.filter((p) => p.id !== id);
+  res.redirect("/posts");
 });
 
 app.listen(PORT, () => {

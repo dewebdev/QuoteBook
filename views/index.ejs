@@ -8,21 +8,27 @@
   </head>
   <body>
     <div class="header">
-      <h1>"QuoteBook"</h1>
-      <a href="/posts/new">Write a Quote</a>
+      <h1>"QuōteBøøk"</h1>
+      <a href="/posts/new" class="button">Write a Quote</a>
     </div>
 
     <div class="container">
-      <% for(let p of posts) { %>
-      <div class="card">
-        <h2>@<%= p.username %></h2>
-        <hr />
-        <span>"<%= p.message %>"</span>
-        <div class="quote__and__id">
-          <a href="/posts/<%= p.id %>">View Quote in Detail</a>
+      <div class="quote-list">
+        <% for(let p of posts) { %>
+        <div class="card">
+          <h2>@<%= p.username %></h2>
+          <hr />
+          <span>"<%= p.message %>"</span>
+          <div class="quote__and__id">
+            <a href="/posts/<%= p.id %>">View Quote</a>
+            <a href="/posts/<%= p.id %>/edit">Edit</a>
+            <form action="/posts/<%=p.id%>?_method=DELETE" method="post">
+              <button type="submit">Delete</button>
+            </form>
+          </div>
         </div>
+        <% } %>
       </div>
-      <% } %>
     </div>
   </body>
 </html>

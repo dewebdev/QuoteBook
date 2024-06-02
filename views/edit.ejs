@@ -3,22 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>New Quote</title>
+    <title>Edit Quote</title>
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
     <div class="header">
-      <h1>Add a New Quote</h1>
+      <h1>Edit Quote</h1>
       <a href="/posts" class="button">Back to Quotes</a>
     </div>
 
     <div class="container">
       <div class="form-container">
-        <form action="/posts" method="POST">
+        <form action="/posts/<%=post.id%>?_method=PATCH" method="post">
           <label for="username">Username:</label>
-          <input type="text" id="username" name="username" required />
-          <label for="message">Message:</label>
-          <textarea id="message" name="message" required></textarea>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value="<%=post.username%>"
+            readonly
+          />
+          <label for="content">Message:</label>
+          <textarea id="content" cols="30" rows="10" name="content">
+<%=post.message%></textarea
+          ><br /><br />
           <button type="submit">Submit</button>
         </form>
       </div>
